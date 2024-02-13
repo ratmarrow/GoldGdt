@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="PlayerParameters" load_steps=2 format=3 uid="uid://c770d2068in3p"]
+
+[ext_resource type="Script" path="res://addons/GoldGdt/src/PlayerParameters.gd" id="1_wnsr5"]
+
+[resource]
+script = ExtResource("1_wnsr5")
+THIRD_PERSON_CAMERA = false
+AUTOHOP = true
+FORWARD_SPEED = 10.16
+SIDE_SPEED = 10.16
+MAX_SPEED = 6.35
+MAX_AIR_SPEED = 0.762
+STOP_SPEED = 2.54
+GRAVITY = 20.32
+JUMP_HEIGHT = 1.143
+HULL_STANDING_BOUNDS = Vector3(0.813, 1.829, 0.813)
+HULL_DUCKING_BOUNDS = Vector3(0.813, 0.914, 0.813)
+VIEW_OFFSET = 0.711
+DUCK_VIEW_OFFSET = 0.305
+ACCELERATION = 10.0
+AIR_ACCELERATION = 10.0
+FRICTION = 4.0
+DUCKING_SPEED_MULTIPLIER = 0.333
+BUNNYHOP_CAP_MODE = 1
+SPEED_THRESHOLD_FACTOR = 1.0
+SPEED_DROP_FACTOR = 1.1
+MOUSE_SENSITIVITY = 13.0
+BOB_FREQUENCY = 0.008
+BOB_FRACTION = 12.0
+ROLL_ANGLE = 0.65
+ROLL_SPEED = 300.0
+ARM_LENGTH = 2.0
+ARM_OFFSET_DEGREES = Vector2(0, 0)
