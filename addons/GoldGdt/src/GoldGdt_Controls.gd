@@ -18,7 +18,7 @@ func _ready():
 	Input.set_use_accumulated_input(false) # Disable accumulated input for precise inputs.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # Capture the mouse.
 
-func _unhandled_input(event) -> void:
+func _input(event) -> void:
 	
 	#---------------------
 	# Replace with your own implementation of mouse mode switching!!
