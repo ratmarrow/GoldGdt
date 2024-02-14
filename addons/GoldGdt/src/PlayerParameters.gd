@@ -37,7 +37,7 @@ enum BunnyhopCapMode {
 @export var SPEED_DROP_FACTOR : float = 1.1 ## How many times over [code]MAX_SPEED[/code] the player can have when performing a jump.
 
 @export_group("Camera")
-@export var MOUSE_SENSITIVITY : float = 15.0 ## How fast the camera moves in response to player input. The default value equals 15.
+@export var MOUSE_SENSITIVITY : float = 12.0 ## How fast the camera moves in response to player input. The default value equals 15.
 @export var BOB_FREQUENCY : float = 0.008
 @export var BOB_FRACTION : float = 12
 @export var ROLL_ANGLE : float = 0.65

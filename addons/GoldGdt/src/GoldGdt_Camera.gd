@@ -17,7 +17,6 @@ var update : bool = false
 
 func _ready():
 	set_as_top_level(true) # Detach from pawn node.
-	
 	# Initialize interpolation transforms.
 	global_transform = target.global_transform
 	t_prev = target.global_transform
@@ -33,12 +32,12 @@ func _process(delta):
 	var f := Engine.get_physics_interpolation_fraction()
 	
 	# Interpolate camera.
-	if Engine.get_frames_per_second() > Engine.physics_ticks_per_second:
+	if _should_interpolate():
 		for i in range(3):
 			global_transform.origin[i] = lerpf(t_prev.origin[i], t_curr.origin[i], f)
 		global_rotation = target.global_rotation
 	else:
-		global_transform = t_curr
+		global_transform = target.global_transform
 	
 	# Modify camera nodes to conform with Player Parameters.
 	# TODO: I have to make this not run every frame, but as far as I can tell, there is negligible impact on performance, so it stays.
@@ -63,3 +62,8 @@ func _handle_camera_settings() -> void:
 		camera_arm.rotation_degrees = Vector3.ZERO
 		camera_anchor.rotation_degrees.x = 0
 		camera.rotation_degrees.y = 0
+
+func _should_interpolate() -> bool:
+	# See if the current rendering FPS is eligible for interpolation. 
+	# (Eligible is above physics tick-rate or if the modulus of the tick-rate and rendering FPS is not 0)
+	return Engine.get_frames_per_second() > Engine.physics_ticks_per_second || (Engine.physics_ticks_per_second % roundi(Engine.get_frames_per_second())) != 0
