@@ -5,14 +5,8 @@ Character controller add-on for Godot 4 that simulates the movement found in the
 
 ## Changelog
 
-### Update 1 (effectively Legacy Update 7.0)
-- Completely restructured to use components as opposed to beeg script.
-  - This was done to make building on top of the character controller much simpler.
-- Improvements to mouse input.
-  - Now screen size independant.
-  - Hopefully more precise.
-- Improvements to interpolation.
-- Small fixes to make Godot Jolt less volatile.
+### Update 1.5
+- Tuned the camera interpolation inside of `GoldGdt_Camera.gd` to be less volatile while below the physics FPS and at weird framerates (ex. physics FPS 120, rendered FPS 47)
 
 ## Roadmap
 
