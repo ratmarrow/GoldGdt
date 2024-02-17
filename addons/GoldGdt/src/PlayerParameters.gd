@@ -19,6 +19,7 @@ enum BunnyhopCapMode {
 @export var STOP_SPEED : float = 2.54 ## Speed threshold for stopping in the [method _friction] function. The default value equals 2.540 (or 100 Hammer units/inches).
 @export var GRAVITY : float = 20.32 ## Speed of gravity. The default value equals 20.320 (or 800 Hammer units/inches).
 @export var JUMP_HEIGHT : float = 1.143 ## Height of the player's jump. The default value equals 1.143 (or 45 Hammer units/inches).
+@export var STEP_HEIGHT : float = 0.457 ## Maximum height of a stair step. The default value equals 0.457 (or 18 Hammer units/inches).
 
 @export_subgroup("Player Dimensions")
 @export var HULL_STANDING_BOUNDS : Vector3 = Vector3(0.813, 1.829, 0.813) ## The dimensions of the player's collision hull while standing. The default dimensions are [0.813, 1.829, 0.813] (or [32, 72, 32] in Hammer units/inches).

@@ -15,19 +15,19 @@ var update : bool = false
 @export var camera_anchor : Node3D ## Camera anchor node that is automatically rotated to compensate for the camera arm rotation.
 @export var camera : Node3D ## Camera node that is automatically rotated to compensate for the camera anchor rotation.
 
-func _ready():
+func _ready() -> void:
 	set_as_top_level(true) # Detach from pawn node.
 	# Initialize interpolation transforms.
 	global_transform = target.global_transform
 	t_prev = target.global_transform
 	t_curr = target.global_transform
 
-func _update_target():
+func _update_target() -> void:
 	# Update interpolation transforms.
 	t_prev = t_curr
 	t_curr = target.global_transform
 
-func _process(delta):
+func _process(delta) -> void:
 	# Get the interpolation fraction.
 	var f := Engine.get_physics_interpolation_fraction()
 	
@@ -43,7 +43,7 @@ func _process(delta):
 	# TODO: I have to make this not run every frame, but as far as I can tell, there is negligible impact on performance, so it stays.
 	_handle_camera_settings()
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	# Update the transforms.
 	_update_target()
 	pass

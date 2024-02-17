@@ -14,14 +14,14 @@ var move_dir : Vector3
 var jump_on : bool
 var duck_on : bool
 
-func _ready():
+func _ready() -> void:
 	Input.set_use_accumulated_input(false) # Disable accumulated input for precise inputs.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # Capture the mouse.
 
 func _input(event) -> void:
 	
 	#---------------------
-	# Replace with your own implementation of mouse mode switching!!
+	# Replace with your own implementation of MOUSE_MODE switching!!
 	#---------------------
 	
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -44,16 +44,16 @@ func _input(event) -> void:
 			# Grab the event data and process it.
 			_gather_mouse_input(event) 
 
-func _process(delta):
+func _process(delta) -> void:
 	# Reset mouse input to avoid drift.
 	mouse_input = Vector2.ZERO
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	Body._duck(duck_on)
 	_handle_input()
 	_act_on_input(delta)
 
-func _gather_mouse_input(event: InputEventMouseMotion):
+func _gather_mouse_input(event: InputEventMouseMotion) -> void:
 	# Deform the mouse input to make it viewport size independent.
 	var viewport_transform := get_tree().root.get_final_transform()
 	mouse_input += event.xformed_by(viewport_transform).relative
@@ -67,7 +67,7 @@ func _gather_mouse_input(event: InputEventMouseMotion):
 	# Send it off to the View Control component.
 	View._handle_camera_input(mouse_input)
 
-func _handle_input():
+func _handle_input() -> void:
 	# Get input strength on the horizontal axes.
 	var ix = Input.get_action_raw_strength("pm_moveright") - Input.get_action_raw_strength("pm_moveleft")
 	var iy = Input.get_action_raw_strength("pm_movebackward") - Input.get_action_raw_strength("pm_moveforward")

@@ -12,7 +12,7 @@ var offset : float = 0.711 # Current offset from player's origin.
 @export var vertical_view : Node3D ## X-axis Camera Mount gimbal.
 @export var camera_mount : Node3D ## Used for player view aesthetics such as view tilt and bobbing.
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	# Position the horizontal_view.
 	horizontal_view.transform.origin.y = offset
 	
@@ -33,7 +33,7 @@ func _handle_camera_input(look_input: Vector2) -> void:
 	vertical_view.orthonormalize()
 
 # Creates a sinusoidal Camera Mount bobbing motion whilst moving.
-func _camera_mount_bob():
+func _camera_mount_bob() -> void:
 	var bob : float
 	var simvel : Vector3
 	simvel = Body.velocity

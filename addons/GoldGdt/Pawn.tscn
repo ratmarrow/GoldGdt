@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bk1exu1p74wrs"]
 
-[ext_resource type="Resource" uid="uid://skl3i3xje8wc" path="res://CS.tres" id="2_d0de5"]
+[ext_resource type="Resource" uid="uid://c770d2068in3p" path="res://addons/GoldGdt/Default.tres" id="2_m0ukv"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Controls.gd" id="3_sa8ga"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Move.gd" id="4_5gavo"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_View.gd" id="5_say2d"]
@@ -17,46 +17,6 @@ margin = 0.25
 radius = 0.15
 
 [node name="Pawn" type="Node3D"]
-
-[node name="User Input" type="Node" parent="." node_paths=PackedStringArray("Body", "Move", "View")]
-script = ExtResource("3_sa8ga")
-Parameters = ExtResource("2_d0de5")
-Body = NodePath("../Body")
-Move = NodePath("../Move Functions")
-View = NodePath("../View Control")
-
-[node name="View Control" type="Node" parent="." node_paths=PackedStringArray("Body", "horizontal_view", "vertical_view", "camera_mount")]
-script = ExtResource("5_say2d")
-Parameters = ExtResource("2_d0de5")
-Body = NodePath("../Body")
-horizontal_view = NodePath("../Body/Horizontal View")
-vertical_view = NodePath("../Body/Horizontal View/Vertical View")
-camera_mount = NodePath("../Body/Horizontal View/Vertical View/Camera Mount")
-
-[node name="Move Functions" type="Node" parent="." node_paths=PackedStringArray("Body")]
-script = ExtResource("4_5gavo")
-Parameters = ExtResource("2_d0de5")
-Body = NodePath("../Body")
-
-[node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("View", "player_hull", "duck_timer")]
-collision_layer = 2
-script = ExtResource("6_k6qi8")
-Parameters = ExtResource("2_d0de5")
-View = NodePath("../View Control")
-player_hull = NodePath("Collision Hull")
-duck_timer = NodePath("Duck Timer")
-
-[node name="Collision Hull" type="CollisionShape3D" parent="Body"]
-shape = SubResource("BoxShape3D_ofh7r")
-
-[node name="Duck Timer" type="Timer" parent="Body"]
-
-[node name="Horizontal View" type="Node3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
-
-[node name="Vertical View" type="Node3D" parent="Body/Horizontal View"]
-
-[node name="Camera Mount" type="Marker3D" parent="Body/Horizontal View/Vertical View"]
 
 [node name="Debug UI" type="Control" parent="." node_paths=PackedStringArray("Controls", "View", "Body", "GameInfo", "ControlsInfo", "ViewInfo", "BodyInfo")]
 layout_mode = 3
@@ -189,10 +149,51 @@ Copyright (c) 2024 ratmarrow
 "
 fit_content = true
 
+[node name="User Input" type="Node" parent="." node_paths=PackedStringArray("Body", "Move", "View")]
+script = ExtResource("3_sa8ga")
+Parameters = ExtResource("2_m0ukv")
+Body = NodePath("../Body")
+Move = NodePath("../Move Functions")
+View = NodePath("../View Control")
+
+[node name="View Control" type="Node" parent="." node_paths=PackedStringArray("Body", "horizontal_view", "vertical_view", "camera_mount")]
+script = ExtResource("5_say2d")
+Parameters = ExtResource("2_m0ukv")
+Body = NodePath("../Body")
+horizontal_view = NodePath("../Body/Horizontal View")
+vertical_view = NodePath("../Body/Horizontal View/Vertical View")
+camera_mount = NodePath("../Body/Horizontal View/Vertical View/Camera Mount")
+
+[node name="Move Functions" type="Node" parent="." node_paths=PackedStringArray("Body")]
+script = ExtResource("4_5gavo")
+Parameters = ExtResource("2_m0ukv")
+Body = NodePath("../Body")
+
+[node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("View", "player_hull", "duck_timer")]
+collision_layer = 2
+floor_constant_speed = true
+script = ExtResource("6_k6qi8")
+Parameters = ExtResource("2_m0ukv")
+View = NodePath("../View Control")
+player_hull = NodePath("Collision Hull")
+duck_timer = NodePath("Duck Timer")
+
+[node name="Collision Hull" type="CollisionShape3D" parent="Body"]
+shape = SubResource("BoxShape3D_ofh7r")
+
+[node name="Duck Timer" type="Timer" parent="Body"]
+
+[node name="Horizontal View" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
+
+[node name="Vertical View" type="Node3D" parent="Body/Horizontal View"]
+
+[node name="Camera Mount" type="Marker3D" parent="Body/Horizontal View/Vertical View"]
+
 [node name="Interpolated Camera" type="Node3D" parent="." node_paths=PackedStringArray("target", "camera_arm", "camera_anchor", "camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
 script = ExtResource("7_3b78s")
-Parameters = ExtResource("2_d0de5")
+Parameters = ExtResource("2_m0ukv")
 target = NodePath("../Body/Horizontal View/Vertical View/Camera Mount")
 camera_arm = NodePath("Arm")
 camera_anchor = NodePath("Arm/Arm Anchor")
