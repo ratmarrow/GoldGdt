@@ -3,11 +3,17 @@
 
 Character controller add-on for Godot 4 that simulates the movement found in the GoldSrc engine.
 
+## Attribution
+
+### Trace class, `_cast_trace()` function, and `_move_step()` function
+- [Q_Move](https://github.com/Btan2/Q_Move) by [Btan2](https://github.com/Btan2)
+- [Godot-Math-Lib](https://github.com/sinewavey/Godot-Math-Lib) by [sinewave](https://github.com/sinewavey)
+
 ## Changelog
 
 ### Update 2
 - Added in step detection and collision to the Body component. (`GoldGdt_Body.gd`)
-  - Huge thanks to [Btan2](https://github.com/Btan2) and [sinewave](https://github.com/sinewavey) for providing the collision tracing functions used!
+  - Huge thanks to [Btan2](https://github.com/Btan2) and [sinewave](https://github.com/sinewavey) for the collision trace implementation.
 - Removed some magic numbers from the ducking logic in the Body component. (`GoldGdt_Body.gd`)
   - These numbers were for moving the body origin to clear the gap created by the collision hull changes, now it _should_ support changing collision hull shapes.
 
@@ -27,6 +33,10 @@ Character controller add-on for Godot 4 that simulates the movement found in the
 5. Drop the "Pawn" scene into whatever other scenes you need it in.
 
 ## Setup
+
+### Foreword
+
+I ***heavily*** recommend using [Godot Jolt](https://github.com/godot-jolt/godot-jolt) for the physics engine, but this add-on should still work with GodotPhysics if you so choose.
 
 ### Input Map
 
