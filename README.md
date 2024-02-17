@@ -5,12 +5,14 @@ Character controller add-on for Godot 4 that simulates the movement found in the
 
 ## Changelog
 
-### Update 1.5
-- Tuned the camera interpolation inside of `GoldGdt_Camera.gd` to be less volatile while below the physics FPS and at weird framerates (ex. physics FPS 120, rendered FPS 47)
+### Update 2
+- Added in step detection and collision to the Body component. (`GoldGdt_Body.gd`)
+  - Huge thanks to [Btan2](https://github.com/Btan2) and [sinewave](https://github.com/sinewavey) for providing the collision tracing functions used!
+- Removed some magic numbers from the ducking logic in the Body component. (`GoldGdt_Body.gd`)
+  - These numbers were for moving the body origin to clear the gap created by the collision hull changes, now it _should_ support changing collision hull shapes.
 
 ## Roadmap
 
-- Detection and response for stair-like geometry.
 - Creating a system for ladder and water movement.
 - Viewmodel system (ancillary change).
 - 1P/3P model swapping system (ancillary change).
