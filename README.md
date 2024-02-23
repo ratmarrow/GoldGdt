@@ -11,11 +11,13 @@ Character controller add-on for Godot 4 that simulates the movement found in the
 
 ## Changelog
 
-### Update 2
-- Added in step detection and collision to the Body component. (`GoldGdt_Body.gd`)
-  - Huge thanks to [Btan2](https://github.com/Btan2) and [sinewave](https://github.com/sinewavey) for the collision trace implementation.
-- Removed some magic numbers from the ducking logic in the Body component. (`GoldGdt_Body.gd`)
-  - These numbers were for moving the body origin to clear the gap created by the collision hull changes, now it _should_ support changing collision hull shapes.
+### Update 3
+- Made a more thorough pass on step detection logic, and now most issues _should_ be fixed.
+- Added in the new `GoldGdt_Pawn` component, which currently only provides the ability to change desired view rotation with a function. 
+  - Also works in editor when you edit the pitch and yaw variables, thanks `@tool`!
+- Added in a condition to `_move_body()` inside of the `GoldGdt_Body` component that toggles "Stop on Slope" based on movement.
+  - This fixes two issues in one fell swoop. Issue 1 was Jolt Physics caused player to jitter while standing still if "Stop on Slope" was false, but it has to be false for wall-strafing to work, so now both should be working as intended.
+  - If there is a better fix that involves changing Jolt Physics settings, please let me know!
 
 ## Roadmap
 
