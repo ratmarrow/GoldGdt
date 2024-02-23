@@ -76,7 +76,7 @@ func _physics_process(delta) -> void:
 	if not is_on_floor():
 		velocity.y -= Parameters.GRAVITY * delta
 	
-	print(_wall_check())
+	
 	_handle_step_trace_values()
 	
 	# Create deformed collision hull for use in _move_step()
