@@ -4,18 +4,12 @@ class_name GoldGdt_View extends Node
 @export var Parameters : PlayerParameters
 @export var Body : GoldGdt_Body
 
-@export_group("Player View")
-var offset : float = 0.711 # Current offset from player's origin.
-
 @export_subgroup("Gimbal")
 @export var horizontal_view : Node3D ## Y-axis Camera Mount gimbal.
 @export var vertical_view : Node3D ## X-axis Camera Mount gimbal.
 @export var camera_mount : Node3D ## Used for player view aesthetics such as view tilt and bobbing.
 
 func _physics_process(_delta) -> void:
-	# Position the horizontal_view.
-	horizontal_view.transform.origin.y = offset
-	
 	# Add some view bobbing to the Camera Mount
 	_camera_mount_bob()
 	

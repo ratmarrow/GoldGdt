@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk1exu1p74wrs"]
+[gd_scene load_steps=11 format=3 uid="uid://bk1exu1p74wrs"]
 
+[ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Pawn.gd" id="1_qx48f"]
 [ext_resource type="Resource" uid="uid://c770d2068in3p" path="res://addons/GoldGdt/Default.tres" id="2_m0ukv"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Controls.gd" id="3_sa8ga"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Move.gd" id="4_5gavo"]
@@ -8,7 +9,7 @@
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_Camera.gd" id="7_3b78s"]
 [ext_resource type="Script" path="res://addons/GoldGdt/src/GoldGdt_DebugUI.gd" id="7_vbtkw"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ofh7r"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7pn1"]
 size = Vector3(0.813, 1.829, 0.813)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4rs7"]
@@ -16,7 +17,10 @@ custom_solver_bias = 1.0
 margin = 0.25
 radius = 0.15
 
-[node name="Pawn" type="Node3D"]
+[node name="Pawn" type="Node3D" node_paths=PackedStringArray("View", "Camera")]
+script = ExtResource("1_qx48f")
+View = NodePath("View Control")
+Camera = NodePath("Interpolated Camera")
 
 [node name="Debug UI" type="Control" parent="." node_paths=PackedStringArray("Controls", "View", "Body", "GameInfo", "ControlsInfo", "ViewInfo", "BodyInfo")]
 layout_mode = 3
@@ -169,17 +173,17 @@ script = ExtResource("4_5gavo")
 Parameters = ExtResource("2_m0ukv")
 Body = NodePath("../Body")
 
-[node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("View", "player_hull", "duck_timer")]
+[node name="Body" type="CharacterBody3D" parent="." node_paths=PackedStringArray("View", "collision_hull", "duck_timer")]
 collision_layer = 2
 floor_constant_speed = true
 script = ExtResource("6_k6qi8")
 Parameters = ExtResource("2_m0ukv")
 View = NodePath("../View Control")
-player_hull = NodePath("Collision Hull")
+collision_hull = NodePath("Collision Hull")
 duck_timer = NodePath("Duck Timer")
 
 [node name="Collision Hull" type="CollisionShape3D" parent="Body"]
-shape = SubResource("BoxShape3D_ofh7r")
+shape = SubResource("BoxShape3D_j7pn1")
 
 [node name="Duck Timer" type="Timer" parent="Body"]
 
@@ -189,6 +193,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)
 [node name="Vertical View" type="Node3D" parent="Body/Horizontal View"]
 
 [node name="Camera Mount" type="Marker3D" parent="Body/Horizontal View/Vertical View"]
+gizmo_extents = 0.5
 
 [node name="Interpolated Camera" type="Node3D" parent="." node_paths=PackedStringArray("target", "camera_arm", "camera_anchor", "camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.711, 0)

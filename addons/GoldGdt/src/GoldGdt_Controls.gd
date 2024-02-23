@@ -49,9 +49,8 @@ func _process(delta) -> void:
 	mouse_input = Vector2.ZERO
 
 func _physics_process(delta) -> void:
-	Body._duck(duck_on)
-	_handle_input()
-	_act_on_input(delta)
+	_gather_input()
+	_act_on_input()
 
 func _gather_mouse_input(event: InputEventMouseMotion) -> void:
 	# Deform the mouse input to make it viewport size independent.
@@ -67,7 +66,7 @@ func _gather_mouse_input(event: InputEventMouseMotion) -> void:
 	# Send it off to the View Control component.
 	View._handle_camera_input(mouse_input)
 
-func _handle_input() -> void:
+func _gather_input() -> void:
 	# Get input strength on the horizontal axes.
 	var ix = Input.get_action_raw_strength("pm_moveright") - Input.get_action_raw_strength("pm_moveleft")
 	var iy = Input.get_action_raw_strength("pm_movebackward") - Input.get_action_raw_strength("pm_moveforward")
@@ -98,7 +97,11 @@ func _handle_input() -> void:
 	jump_on = Input.is_action_pressed("pm_jump") if Parameters.AUTOHOP else Input.is_action_just_pressed("pm_jump")
 	duck_on = Input.is_action_pressed("pm_duck")
 
-func _act_on_input(delta: float):
+func _act_on_input() -> void:
+	var delta = get_physics_process_delta_time()
+	
+	Body._duck(duck_on)
+	
 	# Check if we are on ground
 	if Body.is_on_floor():
 		if jump_on:

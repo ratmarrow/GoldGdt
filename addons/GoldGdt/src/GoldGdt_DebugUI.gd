@@ -31,13 +31,13 @@ func _write_input_ui():
 	
 func _write_view_ui():
 	var format = "View Angles: %s\nView Offset: %s"
-	var str = format % [View.camera_mount.global_rotation_degrees, View.offset]
+	var str = format % [View.camera_mount.global_rotation_degrees, Body.offset]
 	ViewInfo.text = str
 	pass
 	
 func _write_body_ui():
-	var format = "Velocity: %s\nSpeed: %s m/s (%s u/s)\nDucking: %s\nDucked: %s"
+	var format = "Position: %s\nVelocity: %s\nSpeed: %s m/s (%s u/s)\nDucking: %s\nDucked: %s"
 	var h_vel = Vector2(Body.velocity.x, Body.velocity.z)
-	var str = format % [Body.velocity, round(h_vel.length()), round(h_vel.length() * 39.37), Body.ducking, Body.ducked]
+	var str = format % [Body.global_position, Body.velocity, round(h_vel.length()), round(h_vel.length() * 39.37), Body.ducking, Body.ducked]
 	BodyInfo.text = str
 	pass

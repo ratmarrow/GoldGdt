@@ -22,12 +22,24 @@ func _ready() -> void:
 	t_prev = target.global_transform
 	t_curr = target.global_transform
 
+func _process(delta_) -> void:
+	
+	_interpolate()
+	# Modify camera nodes to conform with Player Parameters.
+	# TODO: I have to make this not run every frame, but as far as I can tell, there is negligible impact on performance, so it stays.
+	_handle_camera_settings()
+
+func _physics_process(delta_) -> void:
+	# Update the transforms.
+	_update_target()
+	pass
+
 func _update_target() -> void:
 	# Update interpolation transforms.
 	t_prev = t_curr
 	t_curr = target.global_transform
 
-func _process(delta) -> void:
+func _interpolate() -> void:
 	# Get the interpolation fraction.
 	var f := Engine.get_physics_interpolation_fraction()
 	
@@ -38,15 +50,6 @@ func _process(delta) -> void:
 		global_rotation = target.global_rotation
 	else:
 		global_transform = target.global_transform
-	
-	# Modify camera nodes to conform with Player Parameters.
-	# TODO: I have to make this not run every frame, but as far as I can tell, there is negligible impact on performance, so it stays.
-	_handle_camera_settings()
-
-func _physics_process(delta) -> void:
-	# Update the transforms.
-	_update_target()
-	pass
 
 func _handle_camera_settings() -> void:
 	# Check if we are using third person.

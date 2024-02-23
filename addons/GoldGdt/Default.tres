@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_wnsr5")
 THIRD_PERSON_CAMERA = false
-AUTOHOP = false
+AUTOHOP = true
 FORWARD_SPEED = 10.16
 SIDE_SPEED = 10.16
 MAX_SPEED = 8.128
