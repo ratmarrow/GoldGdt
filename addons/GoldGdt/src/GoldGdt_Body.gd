@@ -5,7 +5,7 @@
 	# Godot-Math-Lib (Sinewave): https://github.com/sinewavey/Godot-Math-Lib/tree/main
 	# Q_Move (Btan2): https://github.com/Btan2/Q_Move/tree/main
 
-@icon("src/gdticon.png")
+@icon("gdticon.png")
 class_name GoldGdt_Body extends CharacterBody3D
 
 @export_group("Components")
