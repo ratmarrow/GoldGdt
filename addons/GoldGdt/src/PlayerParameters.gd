@@ -1,4 +1,4 @@
-@icon("src/gdticon.png")
+@icon("gdticon.png")
 class_name PlayerParameters extends Resource
 
 enum BunnyhopCapMode {

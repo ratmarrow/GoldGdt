@@ -1,4 +1,4 @@
-@icon("src/gdticon.png")
+@icon("gdticon.png")
 class_name GoldGdt_Controls extends Node
 
 @export_group("Components")
