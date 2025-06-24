@@ -3,6 +3,9 @@
 
 Character controller add-on for Godot 4 that simulates the movement found in the GoldSrc engine.
 
+# This is still functional, but slightly outdated. I didn't want to deal with the AssetLib stuff.
+You can find a slightly more up-to-date version at [goldsrc-character-controller](https://github.com/ratmarrow/goldsrc-character-controller)
+
 ## Attribution
 
 ### Trace class, `_cast_trace()` function, and `_move_step()` function
